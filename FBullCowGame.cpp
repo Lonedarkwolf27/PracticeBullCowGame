@@ -21,6 +21,11 @@ void FBullCowGame::ResetGame()
 	return;
 }
 
+int32 FBullCowGame::GetHiddenWordLength() const
+{
+	return MyHiddenWord.length();
+}
+
 int32 FBullCowGame::GetMaxTries() const
 {
 	return MyMaxTry;
@@ -36,9 +41,24 @@ bool FBullCowGame::IsGameWon() const
 	return false;
 }
 
-bool FBullCowGame::CheckGuessValidity(std::string)
+EGuessStatus FBullCowGame::CheckGuessValidity(std::string Guess) const
 {
-	return false;
+	if (false)
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false)
+	{
+		return EGuessStatus::Not_Lower_Case;
+	}
+	else if (Guess.length() != GetHiddenWordLength() )
+	{
+		return EGuessStatus::Wrong_Length;
+	}
+	else 
+	{
+		return EGuessStatus::Ok;
+	}
 }
 
 FBullCowCount FBullCowGame::SubmitGuess(FString PlayerGuess)
@@ -63,7 +83,7 @@ FBullCowCount FBullCowGame::SubmitGuess(FString PlayerGuess)
 				}
 			}
 		}
-
-		return BullCowCount;
+	
 	}
+	return BullCowCount;
 }

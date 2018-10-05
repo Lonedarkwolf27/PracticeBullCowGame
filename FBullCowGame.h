@@ -1,5 +1,14 @@
 #pragma once
 #include <string>
+enum EGuessStatus
+{
+	Invalid_Status,
+	Wrong_Length,
+	Not_Isogram,
+	Not_Lower_Case,
+	Ok
+};
+
 
 using FString = std::string;
 using int32 = int;
@@ -16,13 +25,13 @@ public:
 	FBullCowGame();
 
 
-
+	int32 GetHiddenWordLength() const;
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
 	bool IsGameWon() const;
 
 
-	bool CheckGuessValidity(FString);
+	EGuessStatus CheckGuessValidity(FString) const;
 	FBullCowCount SubmitGuess(FString PlayerGuess);
 	void ResetGame(); // Will be implemented later
 private:
